@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ContactController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Email tests
+
+
+Route::get('/contact', [ContactController::class, 'send']);
+Route::post('/contact', [ContactController::class, 'store']);
+
+
+
+
 
 Route::get('/', function () {
     return view('home');

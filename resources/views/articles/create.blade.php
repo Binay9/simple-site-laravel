@@ -6,7 +6,7 @@
 @section('content')
 
 
-<div class="container p-3 mb-3">
+<div class="container p-3 mb-3 mt-3">
 
     <h1 class=" text-info m-2">Create Article Here</h1>
 
@@ -16,40 +16,40 @@
 
         <div class="mb-3 ">
             <label for="title" class="form-label col-form-label-lg text-dark fs-3">Title</label>
-            <input type="text" 
-            class="form-control @error('title') is-invalid @enderror" 
-            name="title" id="title" 
-            id="title" 
-            value="{{ old('title') }}"
-            placeholder="Enter title here"
-            required>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" id="title" value="{{ old('title') }}" placeholder="Enter title here" required>
             @error('title')
-                <p class="invalid-feedback">{{$message}}</p>
-            @enderror    
+            <p class="invalid-feedback">{{$message}}</p>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="excerpt" class="form-label col-form-label-lg text-dark fs-3">Excerpt</label>
-            <input type="text" 
-            class="form-control @error('excerpt') is-invalid @enderror" 
-            id="excerpt" 
-            name="excerpt" 
-            value="{{ old('excerpt') }}"
-            placeholder="Enter Excerpt here"
-            required>
+            <input type="text" class="form-control @error('excerpt') is-invalid @enderror" id="excerpt" name="excerpt" value="{{ old('excerpt') }}" placeholder="Enter Excerpt here" required>
             @error('excerpt')
             <p class="invalid-feedback">{{$message}}</p>
             @enderror
         </div>
 
         <div class="mb-3">
+            <label for="tags" class="form-label col-form-label-lg text-dark fs-3">Tags</label>
+
+            <select name="tags[]" id="tags" class="form-select" multiple>
+                <option selected disabled>Select tags below:</option>
+
+                @foreach($tags as $tag)
+                <option value="{{$tag->id}}">{{$tag->name}}</option>
+                @endforeach
+            </select>
+
+            @error('excerpt')
+            <p class="invalid-feedback">{{$message}}</p>
+            @enderror
+        </div>
+
+
+        <div class="mb-3">
             <label for="body" class="form-label col-form-label-lg text-dark fs-3">Description</label>
-            <textarea class="form-control @error('body') is-invalid @enderror" 
-            id="body" 
-            rows="3" 
-            name="body"  
-            placeholder="Enter description here"
-            required>{{ old('body') }}</textarea>
+            <textarea class="form-control @error('body') is-invalid @enderror" id="body" rows="3" name="body" placeholder="Enter description here" required>{{ old('body') }}</textarea>
             @error('body')
             <p class="invalid-feedback">{{$message}}</p>
             @enderror
